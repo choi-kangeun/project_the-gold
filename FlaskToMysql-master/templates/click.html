@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+</head>
+
+<body bgcolor='111108'> 
+    <header>
+        <div class="container"><br>
+            <h1 class="logo">The Gold</h1>
+            
+            <strong>
+                <nav>
+                    <ul class="menu">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+
+                        {% if session['loginsuccess'] %}
+                        <li><a href="{{ url_for('logout')}}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('insert_info') }}">Sign up</a></li>
+                        
+                    </ul>
+                    
+                </nav>
+                
+            </strong>
+        </div>        
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="jumbo">
+        
+        <h2>Please select the year you want to know the gold price</h2>
+        <body bgcolor='111108'></body>    
+    <h3>
+        <form action="http://127.0.0.1:5000/db/check" method="GET">
+        <!--<select name = 'predict'>
+        <option value="August22">2022년 8월</option>
+        <option value="September22">2022년 9월</option>
+        <option value="October22">2022년 10월</option>
+        <option value="November22">2022년 11월</option>
+        <option value="December22">2022년 12월</option>
+        <option value="January23">2023년 1월</option>
+        <option value="February23">2023년 2월</option>
+        <option value="March23">2023년 3월</option>
+        <option value="April23">2023년 4월</option>
+        <option value="May23">2023년 5월</option>
+        <option value="June23">2023년 6월</option>
+        <option value="July23">2023년 7월</option>
+        <option value="August23">2023년 8월</option>
+        <option value="September23">2023년 9월</option>
+        <option value="October23">2023년 10월</option>
+        <option value="November23">2023년 11월</option>
+        <option value="December23">2023년 12월</option>
+        <option value="January24">2024년 1월</option>
+        <option value="February24">2024년 2월</option>
+        <option value="March24">2024년 3월</option>
+        <option value="April24">2024년 4월</option>
+        <option value="May24">2024년 5월</option>
+        <option value="June24">2024년 6월</option>
+        <option value="July24">2024년 7월</option>
+        <option value="August24">2024년 8월</option></select>-->
+
+        <input type="date" name="startDate" min="2022-01-01" max="2022-12-31">
+        <input type="date" name="endDate" min="2022-01-01" max="2022-12-31">
+
+        <button type="submit" class="clickbtn">click</h4>
+    </h3>
+
+    </form>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+<script>
+    function locationToCheck(){
+        location.href = "http://127.0.0.1:5000/db/check"
+    }
+</script>
+
+</body>
+</html>
+

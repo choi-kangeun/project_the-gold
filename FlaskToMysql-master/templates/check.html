@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+</head>
+<body bgcolor='111108'> 
+    <header>
+        <div class="container"><br>
+            <h1 class="logo">The Gold</h1>
+            <strong>
+                <nav>
+                    <ul class="menu">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+
+                        {% if session['loginsuccess'] %}
+                        <li><a href="{{ url_for('logout')}}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('insert_info') }}">Sign up</a></li>
+                        
+                    </ul>
+                </nav>
+            </strong>
+        </div>
+    </header>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      let data_list = {{data_list | tojson}};
+      let contact = JSON.parse(data_list)
+      console.log(contact)      
+
+   
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(
+        contact
+        
+        );
+        
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 1500px; height: 800px"></div>
+  </body>
+</html>
+
+</body>
+</html>
